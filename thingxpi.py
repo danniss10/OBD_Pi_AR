@@ -46,6 +46,11 @@ while True:
 
     payload = o.get_data()
 
+    for key in payload:
+    	if isinstance(payload[key], float):
+    		#temp = "{:.9f}".format(numvar)
+    		payload[key] = round(payload[key],2) 
+
     print payload
 
     response = requests.put(url + '/Things/' + thing + '/Properties/*',
