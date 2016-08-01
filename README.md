@@ -45,31 +45,22 @@ Directions:
 7.  In the terminal, run the following commands:
 
     \# sudo apt-get update
-
     \# sudo apt-get upgrade
-
     \# sudo apt-get autoremove
-
     \# sudo reboot
 
 8.  After rebooting, run to following commands to install necessary components:
 
     \# sudo apt-get install python-serial
-
     \# sudo apt-get install bluetooth bluez-utils blueman
-
     \# sudo apt-get install bluez bluez-tools
-
     \# sudo apt-get install python-wxgtk2.8 python-wxtools wx2.8-i18n libwxgtk2.8-dev
-
     \# sudo apt-get install git-core
-
     \# sudo reboot
 
 9.  Then, install the OBD\_Pi\_AR software, by running the following commands:
 
     \# cd \~
-
     \# git clone https://github.com/danniss10/OBD\_Pi\_AR.git
 
 10. Shut down the Raspberry Pi:
@@ -81,15 +72,10 @@ Directions:
 12. Set aside the Raspberry Pi and set up ThingWorx in a browser on the laptop:
 
     a.  Create a GenericThing with the following properties:
-
         i.  \# rpm
-
         ii. \# load
-
         iii. -T- fuel\_status
-
         iv. \# speed
-
         v.  \# throttle\_pos
 
 13. Carry Raspberry Pi with Bluetooth and wifi adapters, battery pack, wifi hotspot, and laptop out to your car. Then, plug the battery pack back into the Raspberry Pi to start it up again.
@@ -115,15 +101,10 @@ Directions:
 -   This command will open the nano file editor. Add the following script to the file:
 
     rfcomm0 {
-
         bind no;
-
         device &lt;Mac Address&gt;;
-
         channel 1;
-
         comment “Serial Port”;
-
     }
 
 -   Press ‘ctrl-x’, then ‘y’, followed by ‘enter’, to save the changes.
@@ -141,7 +122,6 @@ Directions:
 3.  Run the thingxpi.py code to transmit data to ThingWorx, with arguments: thing name, URL, app key.
 
     \# cd OBD\_Pi\_AR
-
     \# sudo python thingxpi.py &lt;thing name&gt; &lt;url&gt; &lt;app key&gt;
 
 -   This should print live OBDII data in the terminal window, as well as a response code 200 indicating successful connection to ThingWorx.
