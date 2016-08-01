@@ -82,17 +82,27 @@ Directions:
 
 12. Set aside the Raspberry Pi and set up ThingWorx in a browser on the laptop:
 
-    a.  Create a GenericThing with the following properties:
-    
-    -   \# rpm
+    a.	Launch Thingworx instance.
+    b.	Select “Application Keys” under the Security tab on the home page. 
+    c.	Select the green plus key to add a new application key.
+    d.	Give the key a name as well as a username for the “User Name Reference” category.
+    e.	Select save. The application key will be generated. Note this application key for future use.
+    f.	On the home page, under modeling, select “Things”, and created a new thing by selecting the green plus sign
+    g.	Give the thing a name, and to the right of “Thing Template”, make the thing a “Generic Thing”.
+    h.	Select save.
+    i.	Select the name of your thing which should be one of the tabs at the top. Select edit and then select properties under “Entity Information”
+    j.	Select the “Add my property button”
+    k.  Create the following properties as “My property” and with the following “Base Type” and then select save
+
+    -   Property: rpm   Base Type: #
         
-    -   \# load
+    -   Property: load   Base Type: #
         
-    -   -T- fuel\_status
+    -   Property: fuel_status   Base Type: -T-
         
-    -   \# speed
+    -   Property: speed   Base Type: #
         
-    -   \# throttle\_pos
+    -   Property: throttle_pos  Base Type: #
 
 13. Carry Raspberry Pi with Bluetooth and wifi adapters, battery pack, wifi hotspot, and laptop out to your car. Then, plug the battery pack back into the Raspberry Pi to start it up again.
 
