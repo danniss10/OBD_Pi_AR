@@ -1,6 +1,5 @@
 Requirements:
-•	Raspberry Pi 2 Model B, with Raspbian installed
-•	Battery Pack with Micro USB Cord
+•	Raspberry Pi 2 Model B, with Raspbian installedBattery Pack with Micro USB Cord
 •	Plugable USB Bluetooth 4.0 Low Energy Micro Adapter
 •	ELM327  Bluetooth Adapter
 •	Raspberry Pi Compatible USB Wifi Adapter
