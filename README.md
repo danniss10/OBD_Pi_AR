@@ -97,6 +97,7 @@ Directions:
     g.	Give the thing a name, and to the right of “Thing Template”, make the thing a “Generic Thing”.
     
     h.	Select save.
+    
     i.	Select the name of your thing which should be one of the tabs at the top. Select edit and then select properties under “Entity Information”
     
     j.	Select the “Add my property button”
