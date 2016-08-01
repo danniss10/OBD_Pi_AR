@@ -102,16 +102,19 @@ Directions:
     # ssh <username>@<inet addr>;
     ```
 15. Plug ELM327 Bluetooth Adapter into OBDII port. Then, in the terminal window, use the following commands to connect to the Bluetooth adapter:
+
     ```
     # hcitool scan
     ```
 -   This command scans for available Bluetooth devices and should display the name and Mac Address (XX:XX:XX:XX:XX:XX) of your ELM327 Bluetooth Adapter. Note the Mac Address.
+
     ```
     # bluez-simple-agent hci0 <Mac Address>
     ```
 -   This command will prompt you to enter the pin for pairing the ELM327 Bluetooth Adapter. If the manufacturer did not provide the pin, it will likely be “0000,” “1234,” or “6789.”
 
-1.  Create a serial connection between the ELM327 Bluetooth Adapter and the Raspberry Pi, by using the following commands:
+16.  Create a serial connection between the ELM327 Bluetooth Adapter and the Raspberry Pi, by using the following commands:
+
     ```
     # sudo nano /etc/bluetooth/rfcomm.conf
     ```
@@ -131,13 +134,13 @@ Directions:
     ```
 -   Now the Bluetooth serial connection should be running.
 
-1.  On the laptop, open a new terminal window, and run the following commands to remotely access Raspberry Pi shell:
+17.  On the laptop, open a new terminal window, and run the following commands to remotely access Raspberry Pi shell:
     ```
     # ssh <username>@<inet addr>
     ```
-2.  Turn on the car.
+18.  Turn on the car.
 
-3.  Run the thingxpi.py code to transmit data to ThingWorx, with arguments: thing name, URL, app key.
+19.  Run the thingxpi.py code to transmit data to ThingWorx, with arguments: thing name, URL, app key.
     ```
     # cd OBD\_Pi\_AR
     
@@ -145,7 +148,7 @@ Directions:
     ```
 -   This should print live OBDII data in the terminal window, as well as a response code 200 indicating successful connection to ThingWorx.
 
-1.  Under the same Vuforia Experience Server as the ThingWorx server, create a new experience.
+20.  Under the same Vuforia Experience Server as the ThingWorx server, create a new experience.
 
     a.  Add a ThingMark to the canvas and associate it with the code assigned to the intended ThingMark.
     
@@ -157,4 +160,4 @@ Directions:
     d.  Under Data, select the Configuration dropdown menu, and check the boxes next to ‘Invoke On Startup,’ ‘Auto-select first row,’ and ‘Auto-Refresh.’
     -   Set the Auto-Refresh rate at ‘1’ for updates every second.
 
-2.  Publish the experience.
+21.  Publish the experience.
