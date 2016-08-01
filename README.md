@@ -31,19 +31,19 @@ Directions:
 2.  Plug the Raspberry Pi into battery pack to power it up. Then log in.
 
 3.  In the shell, run the following command to power up the GUI:
-
+    ```
     \# startx
-
+    ```
 4.  In the GUI connect to your wifi hotspot.
 
 5.  Open a new terminal window and run the command:
-
+    ```
     \# ifconfig
-
+    ```
 6.  From the printed output, find the wlan0 section, and note the inet addr for later use.
 
 7.  In the terminal, run the following commands:
-
+    
     \# sudo apt-get update
     
     \# sudo apt-get upgrade
@@ -116,7 +116,7 @@ Directions:
     ```
     rfcomm0 {
         bind no;
-        device &lt;Mac Address&gt;;
+        device <Mac Address>;
         channel 1;
         comment “Serial Port”;
     }
