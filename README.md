@@ -81,15 +81,10 @@ Directions:
 12. Set aside the Raspberry Pi and set up ThingWorx in a browser on the laptop:
 
     a.  Create a GenericThing with the following properties:
-    
         -   \# rpm
-        
         -   \# load
-        
         -   -T- fuel\_status
-        
         -   \# speed
-        
         -   \# throttle\_pos
 
 13. Carry Raspberry Pi with Bluetooth and wifi adapters, battery pack, wifi hotspot, and laptop out to your car. Then, plug the battery pack back into the Raspberry Pi to start it up again.
