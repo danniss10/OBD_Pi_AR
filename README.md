@@ -73,9 +73,11 @@ Directions:
     # git clone https://github.com/danniss10/OBD_Pi_AR.git
     ```
 10. Shut down the Raspberry Pi:
+
     ```
     # sudo shutdown now
     ```
+    
 11. Once the Raspberry Pi has successfully shut down, disconnect the mouse, keyboard, HDMI cord, and battery pack from the Raspberry Pi.
 
 12. Set aside the Raspberry Pi and set up ThingWorx in a browser on the laptop:
@@ -95,6 +97,7 @@ Directions:
 13. Carry Raspberry Pi with Bluetooth and wifi adapters, battery pack, wifi hotspot, and laptop out to your car. Then, plug the battery pack back into the Raspberry Pi to start it up again.
 
 14. On the laptop computer, open a terminal and run the following commands to remotely access Raspberry Pi shell:
+
     ```
     # ssh <username>@<inet addr>;
     ```
