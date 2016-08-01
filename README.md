@@ -82,9 +82,13 @@ Directions:
 
     a.  Create a GenericThing with the following properties:
         -   \# rpm
+        
         -   \# load
+        
         -   -T- fuel\_status
+        
         -   \# speed
+        
         -   \# throttle\_pos
 
 13. Carry Raspberry Pi with Bluetooth and wifi adapters, battery pack, wifi hotspot, and laptop out to your car. Then, plug the battery pack back into the Raspberry Pi to start it up again.
@@ -99,7 +103,7 @@ Directions:
 
 -   This command scans for available Bluetooth devices and should display the name and Mac Address (XX:XX:XX:XX:XX:XX) of your ELM327 Bluetooth Adapter. Note the Mac Address.
 
-    \# bluez-simple-agent hci0 &lt;Mac Address&gt;
+    \# bluez-simple-agent hci0 &lt; Mac Address &gt;
 
 -   This command will prompt you to enter the pin for pairing the ELM327 Bluetooth Adapter. If the manufacturer did not provide the pin, it will likely be “0000,” “1234,” or “6789.”
 
