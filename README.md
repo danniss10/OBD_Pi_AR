@@ -1,92 +1,82 @@
-pyobd
-=====
+Requirements:
+•	Raspberry Pi 2 Model B, with Raspbian installed
+•	Battery Pack with Micro USB Cord
+•	Plugable USB Bluetooth 4.0 Low Energy Micro Adapter
+•	ELM327  Bluetooth Adapter
+•	Raspberry Pi Compatible USB Wifi Adapter
+•	Wifi Hotspot
+•	Laptop computer
+•	External monitor
+•	HDMI cord
+•	Keyboard
+•	Mouse
+Directions:
+1.	Connect the Raspberry Pi to the USB wifi adapter, keyboard, mouse, and the external monitor with the HDMI cord.
+2.	Plug the Raspberry Pi into battery pack to power it up. Then log in.
+3.	In the shell, run the following command to power up the GUI:
+    #  startx
+4.	In the GUI connect to your wifi hotspot.
+5.	Open a new terminal window and run the command:
+    #  ifconfig
+6.	From the printed output, find the wlan0 section, and note the inet addr for later use.
+7.	In the terminal, run the following commands:
+    #  sudo apt-get update
+    #  sudo apt-get upgrade
+    #  sudo apt-get autoremove
+    #  sudo reboot
+8.	After rebooting, run to following commands to install necessary components:
+    #  sudo apt-get install python-serial
+    #  sudo apt-get install bluetooth bluez-utils blueman
+    #  sudo apt-get install bluez bluez-tools
+    #  sudo apt-get install python-wxgtk2.8 python-wxtools wx2.8-i18n libwxgtk2.8-dev
+    #  sudo apt-get install git-core
+    #  sudo reboot
+9.	Then, install the OBD_Pi_AR software, by running the following commands:
+    #  cd ~
+    #  git clone https://github.com/danniss10/OBD_Pi_AR.git
+10.	Shut down the Raspberry Pi:
+    #  sudo shutdown now
+11.	Once the Raspberry Pi has successfully shut down, disconnect the mouse, keyboard, HDMI cord, and battery pack from the Raspberry Pi.
+12.	Set aside the Raspberry Pi and set up ThingWorx in a browser on the laptop:
+a.	Create a GenericThing with the following properties:
+    i.	# rpm
+    ii.	# load
+    iii.	-T- fuel_status
+    iv.	# speed
+    v.	# throttle_pos
+13.	Carry Raspberry Pi with Bluetooth and wifi adapters, battery pack, wifi hotspot, and laptop out to your car. Then, plug the battery pack back into the Raspberry Pi to start it up again.
+14.	On the laptop computer, open a terminal and run the following commands to remotely access Raspberry Pi shell:
+    #  ssh <username>@<inet addr>
+15.	Plug ELM327 Bluetooth Adapter into OBDII port. Then, in the terminal window, use the following commands to connect to the Bluetooth adapter:
+    #  hcitool scan
+        -	This command scans for available Bluetooth devices and should display the name and Mac Address (XX:XX:XX:XX:XX:XX) of your ELM327 Bluetooth Adapter. Note the Mac Address.
+    #  bluez-simple-agent hci0 <Mac Address>
+        -	This command will prompt you to enter the pin for pairing the ELM327 Bluetooth Adapter. If the manufacturer did not provide the pin, it will likely be “0000,” “1234,” or “6789.”
+16.	Create a serial connection between the ELM327 Bluetooth Adapter and the Raspberry Pi, by using the following commands:
+    #  sudo nano /etc/bluetooth/rfcomm.conf
+        -	This command will open the nano file editor. Add the following script to the file:
+            rfcomm0 	{
+            		bind no;
+            		device <Mac Address>;
+            		channel 1;
+            		comment “Serial Port”;
+            		}
+        -	Press ‘ctrl-x’, then ‘y’, followed by ‘enter’, to save the changes.
+    # sudo rfcomm connect 0
+        -	Now the Bluetooth serial connection should be running.
+17.	On the laptop, open a new terminal window, and run the following commands to remotely access Raspberry Pi shell:
+    #  ssh <username>@<inet addr>
+18.	Turn on the car.
+19.	Run the thingxpi.py code to transmit data to ThingWorx, with arguments: thing name, URL, app key.
+    #  cd OBD_Pi_AR
+    #  sudo python thingxpi.py <thing name> <url> <app key>
+        -	This should print live OBDII data in the terminal window, as well as a response code 200 indicating successful connection to ThingWorx.
+20.	Under the same Vuforia Experience Server as the ThingWorx server, create a new experience.
+    a.	Add a ThingMark to the canvas and associate it with the code assigned to the intended ThingMark.
+    b.	Click the ‘Add +’ button under data and search the name of the thing created in ThingWorx. After selecting the thing, search for “GetPropertyValues” in Filter Services search bar, and click the ‘+’ button.
+    c.	Under the 3D view add 5 3D Sensor widgets, and for each widget:
+        i.	Under Data, select the ‘Current Selected Item’ dropdown menu, and drag each of the properties over to the circle next to the Text field under Properties.
+    d.	Under Data, select the Configuration dropdown menu, and check the boxes next to ‘Invoke On Startup,’ ‘Auto-select first row,’ and ‘Auto-Refresh.’
+        i.	Set the Auto-Refresh rate at ‘1’ for updates every second.
+21.	Publish the experience.
 
-<pre>OBD-Pi: Raspberry Pi Displaying Car Diagnostics (OBD-II) Data On An Aftermarket Head Unit
-
-In this tutorial you will learn how to connect your Raspberry Pi to a Bluetooth OBD-II adapter and display realtime engine data to your cars aftermarket head unit.
-
-Hardware Required:
-1. Raspberry Pi
-2. Aftermarket head unit (Note: Must support Auxiliary input)
-3. Plugable USB Bluetooth 4.0 Low Energy Micro Adapter 
-4. 2A Car Supply / Switch or Micro USB Car Charger
-5. ELM327 Bluetooth Adapter or ELM327 USB Cable
-6. RCA cable 
-7. Keyboard (*optional)
-
-What is OBD-II?
-OBD stands for On-Board Diagnostics, and this standard connector has been mandated in the US since 1996. Now you can think of OBD-II as an on-board computer system that is responsible for monitoring your vehicle’s engine, transmission, and emissions control components. 
-
-Vehicles that comply with the OBD-II standards will have a data connector within about 2 feet of the steering wheel. The OBD connector is officially called a SAE J1962 Diagnostic Connector, but is also known by DLC, OBD Port, or OBD connector. It has positions for 16 pins.
-
-pyOBD?
-pyOBD (aka pyOBD-II or pyOBD2) is an open source OBD-II (SAE-J1979) compliant scantool software written entirely in Python. It is designed to interface with low-cost ELM 32x OBD-II diagnostic interfaces such as ELM-USB. It will basically allow you to talk to your car's ECU, display fault codes, display measured values, read status tests, etc.
-
-I took a fork of pyOBD’s software from their GitHub repository, https://github.com/peterh/pyobd, and used this as the basis for my program.
-
-The program will connect through the OBD-II interface, display the gauges available dependent on the particular vehicle and display realtime engine data to the cars aftermarket head unit in an interactive GUI.
-Software Installation
-Before you start you will need a working install of Raspbian with network access.
-
-We'll be doing this from a console cable connection, but you can just as easily do it from the direct HDMI/TV console or by SSH'ing in. Whatever gets you to a shell will work!
-
-Note: For the following command line instructions, do not type the '#', that is only to indicate that it is a command to enter. 
-
-Before proceeding, run:
-#  sudo apt-get update
-#  sudo apt-get upgrade
-#  sudo apt-get autoremove
-#  sudo reboot
-
-Install these components using the command:
-#  sudo apt-get install python-serial
-#  sudo apt-get install bluetooth bluez-utils blueman
-#  sudo apt-get install python-wxgtk2.8 python-wxtools wx2.8-i18n libwxgtk2.8-dev
-#  sudo apt-get install git-core
-#  sudo reboot 
-
-Next, download the OBD-Pi Software direct from GitHub (https://github.com/Pbartek/pyobd-pi.git)
-
-Or using the command:
-#  cd ~
-#  git clone https://github.com/Pbartek/pyobd-pi.git
-
-Vehicle Installation
-The vehicle installation is quite simple.
-
-1. Insert the USB Bluetooth dongle into the Raspberry Pi along with the SD card.
-
-2. Insert the OBD-II Bluetooth adapter into the SAE J196216 (OBD Port) connector.
-
-3. Connect you RCA cable to the back of your aftermarket head unit and plug the other end into your Raspberry Pi.
-
-4. Install your 2A Car Supply / Switch or Micro USB Car Charger.
-
-5. Finally turn your key to the ON position and navigate your head unit to Auxiliary input.
-
-6. Enter your login credentials and run:
-#  startx
-
-7. Launch BlueZ, the Bluetooth stack for Linux. Pair + Trust your ELM327 Bluetooth Adapter and Connect To: SPP Dev. You should see the Notification "Serial port connected to /dev/rfcomm0"
-
-Note: Click the Bluetooth icon, bottom right (Desktop) to configure your device. Right click on your Bluetooth device to bring up Connect To: SPP Dev.
-
-8. Open up Terminal and run:
-#  cd pyobd-pi
-#  sudo su
-#  python obd_gui.py
-
-Use the Left and Right arrow key to cycle through the gauge display.
-Note: Left and Right mouse click will also work
-
-To exit the program just press Control and C or Alt and Esc.
-Update: 
-Data Logging
-If you would like to log your data run:
-#  cd pyobd-pi
-#  python obd_recorder.py
-
-The logged data file will be saved under: 
-/home/username/pyobd-pi/log/
-
-Enjoy and drive safe!</pre>
