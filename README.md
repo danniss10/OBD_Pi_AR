@@ -153,11 +153,9 @@ Directions:
     b.  Click the ‘Add +’ button under data and search the name of the thing created in ThingWorx. After selecting the thing, search for “GetPropertyValues” in Filter Services search bar, and click the ‘+’ button.
     
     c.  Under the 3D view add 5 3D Sensor widgets, and for each widget:
-        
-        -   Under Data, select the ‘Current Selected Item’ dropdown menu, and drag each of the properties over to the circle next to the Text field under Properties.
+    -   Under Data, select the ‘Current Selected Item’ dropdown menu, and drag each of the properties over to the circle next to the Text field under Properties.
         
     d.  Under Data, select the Configuration dropdown menu, and check the boxes next to ‘Invoke On Startup,’ ‘Auto-select first row,’ and ‘Auto-Refresh.’
-    
-        -   Set the Auto-Refresh rate at ‘1’ for updates every second.
+    -   Set the Auto-Refresh rate at ‘1’ for updates every second.
 
 2.  Publish the experience.
