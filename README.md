@@ -82,15 +82,15 @@ Directions:
 
     a.  Create a GenericThing with the following properties:
     
-        i.  \# rpm
+        -   \# rpm
         
-        ii. \# load
+        -   \# load
         
-        iii. -T- fuel\_status
+        -   -T- fuel\_status
         
-        iv. \# speed
+        -   \# speed
         
-        v.  \# throttle\_pos
+        -   \# throttle\_pos
 
 13. Carry Raspberry Pi with Bluetooth and wifi adapters, battery pack, wifi hotspot, and laptop out to your car. Then, plug the battery pack back into the Raspberry Pi to start it up again.
 
@@ -115,10 +115,15 @@ Directions:
 -   This command will open the nano file editor. Add the following script to the file:
 
     rfcomm0 {
+    
         bind no;
+        
         device &lt;Mac Address&gt;;
+        
         channel 1;
+        
         comment “Serial Port”;
+        
     }
 
 -   Press ‘ctrl-x’, then ‘y’, followed by ‘enter’, to save the changes.
