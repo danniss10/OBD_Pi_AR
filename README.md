@@ -81,6 +81,7 @@ Directions:
 12. Set aside the Raspberry Pi and set up ThingWorx in a browser on the laptop:
 
     a.  Create a GenericThing with the following properties:
+    
         -   \# rpm
         
         -   \# load
@@ -112,18 +113,14 @@ Directions:
     \# sudo nano /etc/bluetooth/rfcomm.conf
 
 -   This command will open the nano file editor. Add the following script to the file:
-
+    ```
     rfcomm0 {
-    
         bind no;
-        
         device &lt;Mac Address&gt;;
-        
         channel 1;
-        
         comment “Serial Port”;
-        
     }
+    ```
 
 -   Press ‘ctrl-x’, then ‘y’, followed by ‘enter’, to save the changes.
     
