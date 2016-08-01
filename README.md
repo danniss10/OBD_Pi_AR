@@ -32,50 +32,50 @@ Directions:
 
 3.  In the shell, run the following command to power up the GUI:
     ```
-    \# startx
+    # startx
     ```
 4.  In the GUI connect to your wifi hotspot.
 
 5.  Open a new terminal window and run the command:
     ```
-    \# ifconfig
+    # ifconfig
     ```
 6.  From the printed output, find the wlan0 section, and note the inet addr for later use.
 
 7.  In the terminal, run the following commands:
+    ```
+    # sudo apt-get update
     
-    \# sudo apt-get update
+    # sudo apt-get upgrade
     
-    \# sudo apt-get upgrade
+    # sudo apt-get autoremove
     
-    \# sudo apt-get autoremove
-    
-    \# sudo reboot
-
+    # sudo reboot
+    ```
 8.  After rebooting, run to following commands to install necessary components:
-
-    \# sudo apt-get install python-serial
+    ```
+    # sudo apt-get install python-serial
     
-    \# sudo apt-get install bluetooth bluez-utils blueman
+    # sudo apt-get install bluetooth bluez-utils blueman
     
-    \# sudo apt-get install bluez bluez-tools
+    # sudo apt-get install bluez bluez-tools
     
-    \# sudo apt-get install python-wxgtk2.8 python-wxtools wx2.8-i18n libwxgtk2.8-dev
+    # sudo apt-get install python-wxgtk2.8 python-wxtools wx2.8-i18n libwxgtk2.8-dev
     
-    \# sudo apt-get install git-core
+    # sudo apt-get install git-core
     
-    \# sudo reboot
-
+    # sudo reboot
+    ```
 9.  Then, install the OBD\_Pi\_AR software, by running the following commands:
-
-    \# cd \~
+    ```
+    # cd \~
     
-    \# git clone https://github.com/danniss10/OBD\_Pi\_AR.git
-
+    # git clone https://github.com/danniss10/OBD_Pi_AR.git
+    ```
 10. Shut down the Raspberry Pi:
-
-    \# sudo shutdown now
-
+    ```
+    # sudo shutdown now
+    ```
 11. Once the Raspberry Pi has successfully shut down, disconnect the mouse, keyboard, HDMI cord, and battery pack from the Raspberry Pi.
 
 12. Set aside the Raspberry Pi and set up ThingWorx in a browser on the laptop:
@@ -95,23 +95,23 @@ Directions:
 13. Carry Raspberry Pi with Bluetooth and wifi adapters, battery pack, wifi hotspot, and laptop out to your car. Then, plug the battery pack back into the Raspberry Pi to start it up again.
 
 14. On the laptop computer, open a terminal and run the following commands to remotely access Raspberry Pi shell:
-
-    \# ssh &lt;username&gt;@&lt;inet addr&gt;
-
+    ```
+    # ssh <username>@<inet addr>;
+    ```
 15. Plug ELM327 Bluetooth Adapter into OBDII port. Then, in the terminal window, use the following commands to connect to the Bluetooth adapter:
-
-    \# hcitool scan
-
+    ```
+    # hcitool scan
+    ```
 -   This command scans for available Bluetooth devices and should display the name and Mac Address (XX:XX:XX:XX:XX:XX) of your ELM327 Bluetooth Adapter. Note the Mac Address.
-
-    \# bluez-simple-agent hci0 &lt; Mac Address &gt;
-
+    ```
+    # bluez-simple-agent hci0 <Mac Address>
+    ```
 -   This command will prompt you to enter the pin for pairing the ELM327 Bluetooth Adapter. If the manufacturer did not provide the pin, it will likely be “0000,” “1234,” or “6789.”
 
 1.  Create a serial connection between the ELM327 Bluetooth Adapter and the Raspberry Pi, by using the following commands:
-
-    \# sudo nano /etc/bluetooth/rfcomm.conf
-
+    ```
+    # sudo nano /etc/bluetooth/rfcomm.conf
+    ```
 -   This command will open the nano file editor. Add the following script to the file:
     ```
     rfcomm0 {
@@ -123,23 +123,23 @@ Directions:
     ```
 
 -   Press ‘ctrl-x’, then ‘y’, followed by ‘enter’, to save the changes.
-    
-    \# sudo rfcomm connect 0
-
+    ```
+    # sudo rfcomm connect 0
+    ```
 -   Now the Bluetooth serial connection should be running.
 
 1.  On the laptop, open a new terminal window, and run the following commands to remotely access Raspberry Pi shell:
-
-    \# ssh &lt;username&gt;@&lt;inet addr&gt;
-
+    ```
+    # ssh <username>@<inet addr>
+    ```
 2.  Turn on the car.
 
 3.  Run the thingxpi.py code to transmit data to ThingWorx, with arguments: thing name, URL, app key.
-
-    \# cd OBD\_Pi\_AR
+    ```
+    # cd OBD\_Pi\_AR
     
-    \# sudo python thingxpi.py &lt;thing name&gt; &lt;url&gt; &lt;app key&gt;
-
+    # sudo python thingxpi.py <thing name> <url> <app key>
+    ```
 -   This should print live OBDII data in the terminal window, as well as a response code 200 indicating successful connection to ThingWorx.
 
 1.  Under the same Vuforia Experience Server as the ThingWorx server, create a new experience.
