@@ -84,15 +84,15 @@ Directions:
 
     a.  Create a GenericThing with the following properties:
     
-        -   \# rpm
+    -   \# rpm
         
-        -   \# load
+    -   \# load
         
-        -   -T- fuel\_status
+    -   -T- fuel\_status
         
-        -   \# speed
+    -   \# speed
         
-        -   \# throttle\_pos
+    -   \# throttle\_pos
 
 13. Carry Raspberry Pi with Bluetooth and wifi adapters, battery pack, wifi hotspot, and laptop out to your car. Then, plug the battery pack back into the Raspberry Pi to start it up again.
 
@@ -118,35 +118,39 @@ Directions:
     ```
     # sudo nano /etc/bluetooth/rfcomm.conf
     ```
--   This command will open the nano file editor. Add the following script to the file:
-    ```
-    rfcomm0 {
-        bind no;
-        device <Mac Address>;
-        channel 1;
-        comment “Serial Port”;
-    }
-    ```
-
--   Press ‘ctrl-x’, then ‘y’, followed by ‘enter’, to save the changes.
-    ```
-    # sudo rfcomm connect 0
-    ```
--   Now the Bluetooth serial connection should be running.
+    -   This command will open the nano file editor. Add the following script to the file:
+        ```
+        rfcomm0 {
+            bind no;
+            device <Mac Address>;
+            channel 1;
+            comment “Serial Port”;
+        }
+        ```
+    
+    -   Press ‘ctrl-x’, then ‘y’, followed by ‘enter’, to save the changes.
+        ```
+        # sudo rfcomm connect 0
+        ```
+    -   Now the Bluetooth serial connection should be running.
 
 17.  On the laptop, open a new terminal window, and run the following commands to remotely access Raspberry Pi shell:
+
     ```
     # ssh <username>@<inet addr>
     ```
+    
 18.  Turn on the car.
 
 19.  Run the thingxpi.py code to transmit data to ThingWorx, with arguments: thing name, URL, app key.
+
     ```
     # cd OBD\_Pi\_AR
     
     # sudo python thingxpi.py <thing name> <url> <app key>
     ```
--   This should print live OBDII data in the terminal window, as well as a response code 200 indicating successful connection to ThingWorx.
+    
+    -   This should print live OBDII data in the terminal window, as well as a response code 200 indicating successful connection to ThingWorx.
 
 20.  Under the same Vuforia Experience Server as the ThingWorx server, create a new experience.
 
