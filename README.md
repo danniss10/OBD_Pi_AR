@@ -83,15 +83,24 @@ Directions:
 12. Set aside the Raspberry Pi and set up ThingWorx in a browser on the laptop:
 
     a.	Launch Thingworx instance.
+    
     b.	Select “Application Keys” under the Security tab on the home page. 
+    
     c.	Select the green plus key to add a new application key.
+    
     d.	Give the key a name as well as a username for the “User Name Reference” category.
+    
     e.	Select save. The application key will be generated. Note this application key for future use.
-    f.	On the home page, under modeling, select “Things”, and created a new thing by selecting the green plus sign
+    
+    f.	On the home page, under modeling, select “Things”, and created a new thing by selecting the green plus sign.
+    
     g.	Give the thing a name, and to the right of “Thing Template”, make the thing a “Generic Thing”.
+    
     h.	Select save.
     i.	Select the name of your thing which should be one of the tabs at the top. Select edit and then select properties under “Entity Information”
+    
     j.	Select the “Add my property button”
+    
     k.  Create the following properties as “My property” and with the following “Base Type” and then select save
 
     -   Property: rpm   Base Type: #
