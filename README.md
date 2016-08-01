@@ -127,8 +127,8 @@ Directions:
     }
 
 -   Press ‘ctrl-x’, then ‘y’, followed by ‘enter’, to save the changes.
-
-> \# sudo rfcomm connect 0
+    
+    \# sudo rfcomm connect 0
 
 -   Now the Bluetooth serial connection should be running.
 
@@ -149,15 +149,15 @@ Directions:
 1.  Under the same Vuforia Experience Server as the ThingWorx server, create a new experience.
 
     a.  Add a ThingMark to the canvas and associate it with the code assigned to the intended ThingMark.
-
+    
     b.  Click the ‘Add +’ button under data and search the name of the thing created in ThingWorx. After selecting the thing, search for “GetPropertyValues” in Filter Services search bar, and click the ‘+’ button.
-
+    
     c.  Under the 3D view add 5 3D Sensor widgets, and for each widget:
-
+        
         -   Under Data, select the ‘Current Selected Item’ dropdown menu, and drag each of the properties over to the circle next to the Text field under Properties.
-
+        
     d.  Under Data, select the Configuration dropdown menu, and check the boxes next to ‘Invoke On Startup,’ ‘Auto-select first row,’ and ‘Auto-Refresh.’
-
+    
         -   Set the Auto-Refresh rate at ‘1’ for updates every second.
 
 2.  Publish the experience.
